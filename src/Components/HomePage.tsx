@@ -5,6 +5,7 @@ function HomePage(){
     const urlSuffix = '.json'
     const [images, setImages] = useState<string[]>([])
     const [loaded, setLoaded] = useState(false)
+    const [sub, setSub] = useState('')
     const isImgUrl = (url:string) => {
         return /\.(jpe?g|png|webp|avif|gif)$/.test(url)
       }
@@ -24,18 +25,21 @@ function HomePage(){
 
     }
     useEffect(() => {
-        fetchImagesFromSub('cute')
+        fetchImagesFromSub(sub)
         setLoaded(true)
-    },[])
+    },[sub])
     if(!loaded){
         return <div></div>
     }
 
     return (
-        <div className="images">
-            {images.map((imgurl:string) => {
-                return <img className="image" src={imgurl}/>
-            })}
+        <div className="flex-2-container">
+                <input type="text" onChange={(e) => setSub(e.target.value)}/>
+            <div className="images">
+                {images.map((imgurl:string) => {
+                    return <img className="image" src={imgurl}/>
+                })}
+            </div>
         </div>
     )
 }
