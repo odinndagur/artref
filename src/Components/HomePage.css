@@ -1,0 +1,11 @@
+.images {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.image {
+    max-width: fit-content;
+    max-height: fit-content;
+}
